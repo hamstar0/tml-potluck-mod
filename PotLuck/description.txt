@@ -1,0 +1,1 @@
+Allows customizing drops from broken pots.
