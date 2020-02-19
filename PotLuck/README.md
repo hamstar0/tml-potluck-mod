@@ -2,4 +2,4 @@
 
 Allows customizing drops from broken pots.
 
-https://forums.terraria.org/index.php?threads/adventure-mode.85140/
+https://forums.terraria.org/index.php?threads/pot-luck.86129/
