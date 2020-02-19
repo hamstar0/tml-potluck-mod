@@ -8,6 +8,11 @@ using HamstarHelpers.Services.Configs;
 
 
 namespace PotLuck {
+	class MyFloatInputElement : FloatInputElement { }
+
+
+
+
 	public class PotItemEntry {
 		[Range(0, 999)]
 		[DefaultValue(1)]
@@ -42,11 +47,6 @@ namespace PotLuck {
 
 		public List<PotItemEntry> ItemDefs = new List<PotItemEntry>();
 	}
-
-
-
-
-	class MyFloatInputElement : FloatInputElement { }
 
 
 

@@ -1,3 +1,4 @@
+using HamstarHelpers.Helpers.TModLoader.Mods;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -32,10 +33,17 @@ namespace PotLuck {
 			PotLuckMod.Instance = this;
 		}
 
-		////////////////
+		////
 
 		public override void Unload() {
 			PotLuckMod.Instance = null;
+		}
+
+
+		////////////////
+
+		public override object Call( params object[] args ) {
+			return ModBoilerplateHelpers.HandleModCall( typeof(PotLuckAPI), args );
 		}
 	}
 }
