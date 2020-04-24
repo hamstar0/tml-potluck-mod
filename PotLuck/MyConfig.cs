@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using Terraria.ID;
 using Terraria.ModLoader.Config;
 using HamstarHelpers.Classes.UI.ModConfig;
 using HamstarHelpers.Services.Configs;
@@ -63,7 +62,7 @@ namespace PotLuck {
 
 		////////////////
 
-		public List<PotEntry> PotEntries = new List<PotEntry> {
+		public List<PotEntry> PotEntries = new List<PotEntry>();	/*{
 			new PotEntry {
 				PercentChance = 1f,
 				HardModeOnly = false,
@@ -78,6 +77,6 @@ namespace PotLuck {
 					}
 				}
 			}
-		};
+		};*/
 	}
 }
