@@ -16,7 +16,8 @@ namespace PotLuck {
 				PotLuckMod.PostProcessPotItems( potTile, action(potTile) );
 			}
 
-			foreach( PotEntry potEnt in PotLuckConfig.Instance.PotEntries ) {
+			var potEntries = PotLuckConfig.Instance.Get<List<PotEntry>>( nameof(PotLuckConfig.PotEntries) );
+			foreach( PotEntry potEnt in potEntries ) {
 				PotLuckMod.CheckPotEntry( potEnt, potTile );
 			}
 		}

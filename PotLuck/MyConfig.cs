@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 using HamstarHelpers.Classes.UI.ModConfig;
-using HamstarHelpers.Services.Configs;
 
 
 namespace PotLuck {
@@ -50,8 +50,8 @@ namespace PotLuck {
 
 
 
-	public partial class PotLuckConfig : StackableModConfig {
-		public static PotLuckConfig Instance => ModConfigStack.GetMergedConfigs<PotLuckConfig>();
+	public partial class PotLuckConfig : ModConfig {
+		public static PotLuckConfig Instance => ModContent.GetInstance<PotLuckConfig>();
 
 
 
