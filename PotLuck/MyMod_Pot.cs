@@ -4,9 +4,9 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.Utilities;
-using HamstarHelpers.Helpers.Items;
-using HamstarHelpers.Helpers.TModLoader;
-using HamstarHelpers.Helpers.World;
+using ModLibsCore.Libraries.TModLoader;
+using ModLibsGeneral.Libraries.Items;
+using ModLibsGeneral.Libraries.World;
 
 
 namespace PotLuck {
@@ -35,17 +35,17 @@ namespace PotLuck {
 			if( potEnt.HardModeOnly && !Main.hardMode ) {
 				return;
 			}
-			if( !potEnt.IsSurface && potTile.y < WorldHelpers.SurfaceLayerBottomTileY ) {
+			if( !potEnt.IsSurface && potTile.y < WorldLibraries.SurfaceLayerBottomTileY ) {
 				return;
 			}
-			if( !potEnt.IsCaves && potTile.y >= WorldHelpers.SurfaceLayerBottomTileY && potTile.y < WorldHelpers.UnderworldLayerTopTileY ) {
+			if( !potEnt.IsCaves && potTile.y >= WorldLibraries.SurfaceLayerBottomTileY && potTile.y < WorldLibraries.UnderworldLayerTopTileY ) {
 				return;
 			}
-			if( !potEnt.IsUnderworld && potTile.y >= WorldHelpers.UnderworldLayerTopTileY ) {
+			if( !potEnt.IsUnderworld && potTile.y >= WorldLibraries.UnderworldLayerTopTileY ) {
 				return;
 			}
 
-			UnifiedRandom rand = TmlHelpers.SafelyGetRand();
+			UnifiedRandom rand = TmlLibraries.SafelyGetRand();
 			if( rand.NextFloat() > potEnt.PercentChance ) {
 				return;
 			}
@@ -56,7 +56,7 @@ namespace PotLuck {
 				var pos = new Vector2( potTile.x<<4, potTile.y<<4 );
 				int stack = rand.Next( itemEnt.MinStack, itemEnt.MaxStack );
 
-				int who = ItemHelpers.CreateItem( pos, itemEnt.ItemDef.Type, stack, 16, 16 );
+				int who = ItemLibraries.CreateItem( pos, itemEnt.ItemDef.Type, stack, 16, 16 );
 
 				if( who >= 0 && who < Main.item.Length && Main.item[who].active ) {
 					items.Add( Main.item[who] );

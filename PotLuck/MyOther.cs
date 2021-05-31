@@ -2,12 +2,15 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ModLibsCore.Libraries.Debug;
 
 
 namespace PotLuck {
 	class PotLuckTile : GlobalTile {
 		public override void KillTile( int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem ) {
 			if( type == TileID.Pots && (Main.tile[i,j].frameX % 36) == 0 && (Main.tile[i,j].frameY % 36) == 0 ) {
+//LogLibraries.Log("pot break at "+i+", "+j);
+//Main.NewText("pot break at "+i+", "+j);
 				PotLuckMod.Instance.PotBreakTile = (i, j);
 				PotLuckMod.ProcessPotBreak( PotLuckMod.Instance.PotBreakTile );
 			}
