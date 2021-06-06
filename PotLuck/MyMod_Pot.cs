@@ -35,13 +35,17 @@ namespace PotLuck {
 			if( potEnt.HardModeOnly && !Main.hardMode ) {
 				return;
 			}
-			if( !potEnt.IsSurface && potTile.y < WorldLibraries.SurfaceLayerBottomTileY ) {
+
+			int surfBot = WorldLocationLibraries.SurfaceLayerBottomTileY;
+			int undTop = WorldLocationLibraries.UnderworldLayerTopTileY;
+
+			if( !potEnt.IsSurface && potTile.y < surfBot ) {
 				return;
 			}
-			if( !potEnt.IsCaves && potTile.y >= WorldLibraries.SurfaceLayerBottomTileY && potTile.y < WorldLibraries.UnderworldLayerTopTileY ) {
+			if( !potEnt.IsCaves && potTile.y >= surfBot && potTile.y < undTop ) {
 				return;
 			}
-			if( !potEnt.IsUnderworld && potTile.y >= WorldLibraries.UnderworldLayerTopTileY ) {
+			if( !potEnt.IsUnderworld && potTile.y >= undTop ) {
 				return;
 			}
 
