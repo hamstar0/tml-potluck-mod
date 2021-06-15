@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.Utilities;
+using ModLibsCore.Libraries.Debug;
 using ModLibsCore.Libraries.TModLoader;
 using ModLibsGeneral.Libraries.Items;
 using ModLibsGeneral.Libraries.World;
@@ -12,11 +13,14 @@ using ModLibsGeneral.Libraries.World;
 namespace PotLuck {
 	public partial class PotLuckMod : Mod {
 		internal static void ProcessPotBreak( (int x, int y) potTile ) {
+			var potEntries = PotLuckConfig.Instance.Get<List<PotEntry>>( nameof(PotLuckConfig.PotEntries) );
+
 			foreach( Func<(int, int), Item[]> action in PotLuckMod.Instance.OnPotBreakActions ) {
-				PotLuckMod.PostProcessPotItems( potTile, action(potTile) );
+				Item[] items = action( potTile );
+
+				PotLuckMod.PostProcessPotItems( potTile, items );
 			}
 
-			var potEntries = PotLuckConfig.Instance.Get<List<PotEntry>>( nameof(PotLuckConfig.PotEntries) );
 			foreach( PotEntry potEnt in potEntries ) {
 				PotLuckMod.CheckPotEntry( potEnt, potTile );
 			}
@@ -60,7 +64,11 @@ namespace PotLuck {
 				var pos = new Vector2( potTile.x<<4, potTile.y<<4 );
 				int stack = rand.Next( itemEnt.MinStack, itemEnt.MaxStack );
 
-				int who = ItemLibraries.CreateItem( pos, itemEnt.ItemDef.Type, stack, 16, 16 );
+				int who = Item.NewItem(
+					position: pos,
+					Type: itemEnt.ItemDef.Type,
+					Stack: stack
+				);
 
 				if( who >= 0 && who < Main.item.Length && Main.item[who].active ) {
 					items.Add( Main.item[who] );
