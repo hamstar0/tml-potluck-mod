@@ -1,8 +1,8 @@
-using ModLibsCore.Libraries.TModLoader.Mods;
 using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
+using ModLibsCore.Libraries.TModLoader.Mods;
 
 
 namespace PotLuck {
@@ -21,9 +21,9 @@ namespace PotLuck {
 
 		internal (int x, int y) PotBreakTile = (0, 0);
 
-		internal IList<Func<(int, int), Item[]>> OnPotBreakActions = new List<Func<(int, int), Item[]>>();
+		internal IList<PotBreakFunc> OnPotBreakActions = new List<PotBreakFunc>();
 
-		internal IList<Action<(int, int), Item[]>> OnPotBreakItemDropActions = new List<Action<(int, int), Item[]>>();
+		internal IList<PostPotBreakFunc> OnPotBreakItemDropActions = new List<PostPotBreakFunc>();
 
 
 

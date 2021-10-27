@@ -17,7 +17,7 @@ namespace PotLuck {
 //Main.NewText("pot break at "+i+", "+j);
 				PotLuckMod.Instance.PotBreakTile = (i, j);
 
-				PotLuckMod.ProcessPotBreak( PotLuckMod.Instance.PotBreakTile );
+				PotLuckMod.ProcessPotBreak( i, j );
 			}
 		}
 	}
@@ -47,11 +47,22 @@ namespace PotLuck {
 			if( !this.IsChecked ) {
 				this.IsChecked = true;
 
+				int itemWho = Array.IndexOf( Main.item, item );
+				if( itemWho == -1 ) {
+					return;
+				}
+
 				int tileX = (int)( item.position.X / 16f );
 				int tileY = (int)( item.position.Y / 16f );
+				bool isPotNearX = Math.Abs( tileX - PotLuckMod.Instance.PotBreakTile.x ) < 2;
+				bool isPotNearY = Math.Abs( tileY - PotLuckMod.Instance.PotBreakTile.y ) < 2;
 
-				if( Math.Abs(tileX - PotLuckMod.Instance.PotBreakTile.x) < 2 && Math.Abs(tileY - PotLuckMod.Instance.PotBreakTile.y) < 2 ) {
-					PotLuckMod.PostProcessPotItems( PotLuckMod.Instance.PotBreakTile, new Item[] { item } );
+				if( isPotNearX && isPotNearY ) {
+					PotLuckMod.PostProcessPotItems(
+						tileX: PotLuckMod.Instance.PotBreakTile.x,
+						tileY: PotLuckMod.Instance.PotBreakTile.y,
+						droppedItemIndexes: new int[] { itemWho }
+					);
 				}
 			}
 		}
