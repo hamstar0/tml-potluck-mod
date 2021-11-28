@@ -13,11 +13,11 @@ namespace PotLuck {
 
 
 	public class PotItemEntry {
-		[Range(0, 999)]
+		[Range( -999, 999 )]
 		[DefaultValue(1)]
 		public int MinStack;
 
-		[Range( 0, 999 )]
+		[Range( 1, 999 )]
 		[DefaultValue( 1 )]
 		public int MaxStack;
 
@@ -31,6 +31,12 @@ namespace PotLuck {
 		[Range( 0f, 1f )]
 		[DefaultValue( 1f )]
 		public float PercentChance;
+
+		[Range( -1, 100 )]
+		[DefaultValue( -1 )]
+		public int RandomItemPicks = -1;
+
+		//
 
 		[DefaultValue( false )]
 		public bool HardModeOnly;

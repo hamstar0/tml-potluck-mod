@@ -1,6 +1,6 @@
 displayName = Pot Luck
 author = hamstar
-version = 2.0.0
+version = 2.1.0
 modReferences = ModLibsCore@1.0.0, ModLibsGeneral@1.0.0
 buildIgnore = *.csproj, *.user, *.bat, obj\*, bin\*, .vs\*, .git\*
 homepage = https://forums.terraria.org/index.php?threads/pot-luck.86129/

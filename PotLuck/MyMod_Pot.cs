@@ -72,9 +72,20 @@ namespace PotLuck {
 
 			//
 
-			foreach( PotItemEntry itemEnt in potEnt.ItemDefs ) {
+			IEnumerable<PotItemEntry> itemDefs = potEnt.ItemDefs;
+			if( potEnt.RandomItemPicks >= 1 ) {
+				itemDefs = itemDefs
+					.OrderBy( i => Main.rand.Next() )
+					.Take( potEnt.RandomItemPicks );
+			}
+
+			foreach( PotItemEntry itemEnt in itemDefs ) {
 				var pos = new Vector2( tileX<<4, tileY<<4 );
 				int stack = rand.Next( itemEnt.MinStack, itemEnt.MaxStack );
+
+				if( stack <= 0 ) {
+					continue;
+				}
 
 				int who = Item.NewItem(
 					position: pos,
